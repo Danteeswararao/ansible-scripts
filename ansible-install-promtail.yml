@@ -9,3 +9,17 @@
       become: yes
       become_user: username
       
+    - name: Loki Promtail | unpack distribution
+      unarchive:
+        src: "/app/logs/lokigrafana/promtail-linux-amd64.zip"
+        dest: "/app/logs/lokigrafana/"
+        remote_src: yes
+      become: yes 
+      
+    - name: Loki | Specify permissions
+      file:
+        dest: "/app/logs/lokigrafana/promtail-linux-amd64"
+        mode: "u=rwx,g=rx,o=rx"
+        owner: "username"
+        group: "username"
+      become: yes
