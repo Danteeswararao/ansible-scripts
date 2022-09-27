@@ -1,0 +1,11 @@
+---
+- name: Install the Promtail on PreProd servers
+  hosts: preprod
+  tasks:
+    - name: Loki Promtail | Download distribution
+      get_url:
+        url: "https://github.com/grafana/loki/releases/download/v1.2.0/promtail-linux-amd64.zip"
+        dest: "/app/logs/lokigrafana/promtail-linux-amd64.zip"
+      become: yes
+      become_user: username
+      
